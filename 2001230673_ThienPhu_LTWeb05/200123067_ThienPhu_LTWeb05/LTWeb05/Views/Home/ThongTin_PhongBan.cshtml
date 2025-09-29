@@ -1,0 +1,49 @@
+﻿@model LTWeb05.ViewModels.PhongBanViewModels
+
+@{
+    ViewBag.Title = "ThongTin_PhongBan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết phòng ban</h2>
+
+<p><b>Ma PB:</b>@Model.phongBan.MaPhong</p>
+<p><b>Ten PB:</b>@Model.phongBan.TenPhong</p>
+
+<table class="table table-striped border">
+    <thead>
+        <tr>
+            <th>
+                Mã nhân viên:
+            </th>
+            <th>
+                Tên Nhân viên:
+            </th>
+            <th>
+                Giới Tính:
+            </th>
+            <th>
+                Tỉnh / thành phố:
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Employees)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaNV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenNV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GioiTinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tinh)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

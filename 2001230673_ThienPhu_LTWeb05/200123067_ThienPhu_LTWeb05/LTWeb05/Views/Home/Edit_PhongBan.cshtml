@@ -1,0 +1,27 @@
+﻿@model LTWeb05.Models.PhongBan
+@{
+    ViewBag.Title = "Sửa Phòng Ban";
+}
+<meta charset="utf-8" />
+
+<h2>Sửa Phòng Ban</h2>
+
+@using (Html.BeginForm("Edit_PhongBan", "Home", FormMethod.Post))
+{
+    <div>
+        <label>Mã Phòng:</label>
+        @Html.TextBox("ID", Model.MaPhong, new { @readonly = "readonly" })
+    </div>
+
+    <div>
+        <label>Tên Phòng:</label>
+        @Html.TextBox("Name", Model.TenPhong)
+    </div>
+
+    <button type="submit">Cập nhật</button>
+}
+
+@if (ViewBag.Message != null)
+{
+    <p style="color:red">@ViewBag.Message</p>
+}

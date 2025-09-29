@@ -1,0 +1,29 @@
+﻿
+
+@model LTWeb05_Bai03.Models.Loai
+@{
+    ViewBag.Title = "Sửa Phòng Ban";
+}
+
+<meta charset="utf-8" />
+<h2>Sửa loai san pham</h2>
+
+@using (Html.BeginForm("Edit_LoaiSP", "Home", FormMethod.Post))
+{
+    <div>
+        <label>Mã Loại:</label>
+        @Html.TextBox("ID", Model.MaPhanLoai, new { @readonly = "readonly" })
+    </div>
+
+    <div>
+        <label>Tên Loại:</label>
+        @Html.TextBox("Name", Model.TenPhanLoai)
+    </div>
+
+    <button type="submit">Cập nhật</button>
+}
+
+@if (ViewBag.Message != null)
+{
+    <p style="color:red">@ViewBag.Message</p>
+}

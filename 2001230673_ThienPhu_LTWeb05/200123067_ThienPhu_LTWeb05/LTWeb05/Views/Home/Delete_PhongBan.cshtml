@@ -1,0 +1,29 @@
+﻿@model LTWeb05.Models.PhongBan
+
+@{
+    ViewBag.Title = "Xóa Phòng Ban";
+}
+
+<h2>Xóa Phòng Ban</h2>
+
+<h3>Bạn có chắc chắn muốn xóa phòng ban này?</h3>
+
+<div>
+    <p><b>Mã phòng:</b> @Model.MaPhong</p>
+    <p><b>Tên phòng:</b> @Model.TenPhong</p>
+</div>
+
+
+
+@using (Html.BeginForm("Delete_PhongBan", "Home", FormMethod.Post))
+{
+    @Html.Hidden("ID", Model.MaPhong)
+    <button type="submit">Xóa</button> @:|
+    <button type="submit">@Html.ActionLink("Hủy", "HienThiPhongBan")</button> 
+
+}
+            
+@if (ViewBag.Message != null)
+{
+    <p style="color:red">@ViewBag.Message</p>
+}

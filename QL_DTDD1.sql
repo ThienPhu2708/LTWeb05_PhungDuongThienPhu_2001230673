@@ -1,0 +1,83 @@
+﻿CREATE DATABASE QL_DTDD1
+USE QL_DTDD1
+
+
+CREATE TABLE LOAI
+(
+	MALOAI VARCHAR (30) PRIMARY KEY,
+	TENLOAI NVARCHAR (50)
+);
+
+CREATE TABLE SANPHAM
+(
+	MASP VARCHAR (50) PRIMARY KEY,
+	TENSP NVARCHAR (50),
+	DUONGDAN VARCHAR(30),
+	GIA DECIMAL,
+	MOTA NVARCHAR (50),
+	MALOAI VARCHAR(30),
+	FOREIGN KEY (MALOAI) REFERENCES LOAI(MALOAI)
+);
+
+
+CREATE TABLE KHACHHANG
+(
+	MAKH VARCHAR (50) PRIMARY KEY,
+	HOTEN NVARCHAR (50),
+	DIENTHOAI VARCHAR (12),
+	GIOITINH NVARCHAR (5),
+	SOTHICH NVARCHAR (30),
+	EMAIL VARCHAR (20),
+	MAKHAU VARCHAR (30)
+);
+
+
+CREATE TABLE GIOHANG
+(
+	MAGH VARCHAR(100) PRIMARY KEY,
+	MAKH VARCHAR (50),
+	MASP VARCHAR (50),
+	SOLUONG DECIMAL,
+	NGAY DATE,
+	FOREIGN KEY (MASP) REFERENCES SANPHAM (MASP),
+	FOREIGN KEY (MAKH) REFERENCES KHACHHANG (MAKH)
+);
+
+
+
+---------------insert into
+INSERT INTO LOAI (MALOAI, TENLOAI) VALUES
+('L01', N'Điện Thoại'),
+('L02', N'Máy Tính Bảng'),
+('L03', N'Phụ Kiện'),
+('L04', N'Đồng Hồ Thông Minh'),
+('L05', N'Laptop');
+
+
+INSERT INTO SANPHAM (MASP, TENSP, DUONGDAN, GIA, MOTA, MALOAI) VALUES
+('SP001', N'iPhone 15 Pro Max', 'apple_ip15promax.jpg', 30000000.00, N'Màu Titan, 256GB', 'L01'),
+('SP002', N'Samsung Galaxy S23', 'samsung_s23.jpg', 18000000.00, N'Màu Xanh, 128GB', 'L01'),
+('SP003', N'iPad Air M1', 'apple_ipadair_m1.png', 15000000.00, N'Màu Hồng, 64GB', 'L02'),
+('SP004', N'Tai Nghe Bluetooth Sony', 'sony_wh1000xm5.jpg', 5500000.00, N'Chống ồn, Đen', 'L03'),
+('SP005', N'Apple Watch SE', 'apple_watch_se.webp', 7000000.00, N'Mặt 44mm, Bạc', 'L04');
+
+
+
+
+
+
+INSERT INTO KHACHHANG (MAKH, HOTEN, DIENTHOAI, GIOITINH, SOTHICH, EMAIL, MAKHAU) VALUES
+('KH001', N'Nguyễn Văn An', '0901234567', N'Nam', N'Công Nghệ', 'anva@mail.com', 'a123456'),
+('KH002', N'Trần Thị Bình', '0918765432', N'Nữ', N'Mua Sắm', 'bitt@mail.com', 'b654321'),
+('KH003', N'Lê Minh Cảnh', '0987654321', N'Nam', N'Chụp Ảnh', 'clm@mail.com', 'c987654'),
+('KH004', N'Phạm Thu Dung', '0976543210', N'Nữ', N'Xem Phim', 'dtp@mail.com', 'd321098'),
+('KH005', N'Hoàng Quốc Thịnh', '0965432109', N'Nam', N'Thể Thao', 'eqh@mail.com', 'e543210');
+
+
+INSERT INTO GIOHANG (MAGH, MAKH, MASP, SOLUONG, NGAY) VALUES
+('GH001', 'KH001', 'SP001', 1, '2025-09-20'),
+('GH002', 'KH002', 'SP002', 2, '2025-09-21'),
+('GH003', 'KH001', 'SP004', 1, '2025-09-21'),
+('GH004', 'KH003', 'SP003', 1, '2025-09-22'),
+('GH005', 'KH004', 'SP005', 3, '2025-09-23');
+

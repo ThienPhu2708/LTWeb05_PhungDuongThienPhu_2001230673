@@ -1,0 +1,120 @@
+﻿@* Khai báo Model cho danh sách Sản phẩm *@
+@model List<LTWeb05_Bai03.Models.SanPham>
+@{
+    ViewBag.Title = "Sản Phẩm Theo Loại";
+    // Lấy danh sách Loại đã được truyền từ Controller qua ViewBag
+    List<LTWeb05_Bai03.Models.Loai> dsLoai = ViewBag.DSLoai;
+}
+
+<style>
+    .sanpham-container {
+        display: flex;
+    }
+
+    .menu-loai {
+        width: 200px;
+        padding: 15px;
+        border-right: 1px solid #ccc;
+    }
+
+        .menu-loai ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-loai li {
+            margin-bottom: 10px;
+        }
+
+        .menu-loai a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            display: block;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+            .menu-loai a:hover {
+                background-color: #f0f0f0;
+                color: darkblue;
+            }
+
+    .danhsach-sp {
+        flex-grow: 1;
+        padding: 15px;
+    }
+
+    .table-sp th, .table-sp td {
+        border: 1px solid #ccc;
+        padding: 8px;
+    }
+</style>
+
+<h2>@ViewBag.TieuDe</h2>
+
+<div class="sanpham-container">
+
+    @Html.ActionLink("Tìm kiếm sản phẩm", "TimKiemSanPham", "Home", null, new { @class = "btn-search" })
+    <div class="menu-loai">
+        <h3>SanPham_Loai</h3>
+        <ul>
+            @* Link để hiển thị tất cả sản phẩm *@
+            <li>
+                @Html.ActionLink("Tất cả Sản phẩm", "SanPham_Loai", "Home", new { MaLoai = "" }, new { @class = "btn-all" })
+            </li>
+
+            @* Lặp qua danh sách loại để tạo menu *@
+            @if (dsLoai != null)
+            {
+                foreach (var loai in dsLoai)
+                {
+                    <li>
+                        @* Khi click sẽ gọi Action SanPham_Loai với tham số MaLoai *@
+                        @Html.ActionLink(loai.TenPhanLoai, "SanPham_Loai", "Home", new { MaLoai = loai.MaPhanLoai }, null)
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+
+    <div class="danhsach-sp">
+
+        <table class="table-sp" style="width:100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Đường dẫn ảnh</th>
+                    <th>Giá</th>
+                    <th>Mô tả</th>
+                    <th>Mã loại</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaSanPham</td>
+                            <td>@item.TenSP</td>
+                            <td>@item.DuongDan</td>
+                            <td>@item.GiaBan.ToString("N0") VNĐ</td>
+                            <td>@item.MoTa</td>
+                            <td>@item.MaPhanLoai</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6">Không có sản phẩm nào thuộc loại này.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

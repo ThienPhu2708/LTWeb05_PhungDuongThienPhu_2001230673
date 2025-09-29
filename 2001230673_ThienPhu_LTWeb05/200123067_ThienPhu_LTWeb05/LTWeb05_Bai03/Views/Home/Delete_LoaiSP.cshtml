@@ -1,0 +1,29 @@
+﻿@model LTWeb05_Bai03.Models.Loai
+
+@{
+    ViewBag.Title = "Xóa Phân loại sản phẩm";
+}
+
+<h2>Xóa Loại sản phẩm</h2>
+
+<h3>Bạn có chắc chắn muốn xóa loại sản phẩm này này?</h3>
+
+<div>
+    <p><b>Mã Loại:</b> @Model.MaPhanLoai</p>
+    <p><b>Tên Loại:</b> @Model.TenPhanLoai</p>
+</div>
+
+
+
+@using (Html.BeginForm("Delete_LoaiSP", "Home", FormMethod.Post))
+{
+    @Html.Hidden("ID", Model.MaPhanLoai)
+    <button type="submit">Xóa</button> @:|
+    <button type="submit">@Html.ActionLink("Hủy", "PhanLoai")</button>
+
+}
+
+@if (ViewBag.Message != null)
+{
+    <p style="color:red">@ViewBag.Message</p>
+}

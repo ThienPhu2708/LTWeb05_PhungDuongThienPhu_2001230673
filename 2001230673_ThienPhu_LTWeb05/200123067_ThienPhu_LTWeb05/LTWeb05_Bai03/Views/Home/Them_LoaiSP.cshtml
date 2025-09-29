@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Thêm loai san pham ";
+}
+<meta charset="utf-8" />
+
+
+<h2>Thêm Loai san pham</h2>
+
+@using (Html.BeginForm("Them_LoaiSP", "Home", FormMethod.Post))
+{
+    <div>
+        <label>Mã Loại:</label>
+        <input type="text" name="ID" required />
+    </div>
+
+    <div>
+        <label>Tên Loại:</label>
+        <input type="text" name="Name" required />
+    </div>
+
+    <button type="submit">Thêm</button>
+}
+
+@if (ViewBag.Message != null)
+{
+    <p style="color:red">@ViewBag.Message</p>
+}

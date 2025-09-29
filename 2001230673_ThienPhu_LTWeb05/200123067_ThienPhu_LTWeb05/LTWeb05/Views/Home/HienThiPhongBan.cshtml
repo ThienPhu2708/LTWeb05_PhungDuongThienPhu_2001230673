@@ -1,0 +1,41 @@
+﻿@model IEnumerable<LTWeb05.Models.PhongBan>
+
+@{
+    ViewBag.Title = "HienThiPhongBan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Danh sách phòng ban</h2>
+
+<p>
+    @Html.ActionLink("Thêm Phòng Ban", "Them_PhongBan")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Mã phòng: 
+        </th>
+        <th>
+            Tên phòng:
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaPhong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenPhong)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit_PhongBan", new { ID = item.MaPhong }) |
+            @Html.ActionLink("Thêm", "Them_PhongBan", new { ID = item.MaPhong }) |
+            @Html.ActionLink("Thông tin chi tiết", "ThongTin_PhongBan", new { ID = item.MaPhong }) |
+            @Html.ActionLink("Xóa phòng", "Delete_PhongBan", new { ID = item.MaPhong })
+        </td>
+    </tr>
+}
+
+</table>

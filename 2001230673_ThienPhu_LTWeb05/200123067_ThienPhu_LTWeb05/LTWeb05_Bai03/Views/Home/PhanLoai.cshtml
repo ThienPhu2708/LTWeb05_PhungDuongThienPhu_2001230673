@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LTWeb05_Bai03.Models.Loai>
+
+@{
+    ViewBag.Title = "PhanLoai";
+}
+<meta charset="utf-8" />
+<h2>PhanLoai</h2>
+
+<p>
+    @Html.ActionLink("Thêm loại sản phẩm", "Them_LoaiSP") |
+    @Html.ActionLink("Danh sách sản phẩm", "DanhSachSanPham")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Mã loại:
+        </th>
+        <th>
+           Tên phân loại:
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaPhanLoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenPhanLoai)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa loại", "Edit_LoaiSP", new { id = item.MaPhanLoai }) |
+            @Html.ActionLink("Sản phẩm theo loại", "SanPham_Loai", new { id = item.MaPhanLoai }) |
+            @Html.ActionLink("Xóa loại", "Delete_LoaiSP", new { id = item.MaPhanLoai })
+        </td>
+    </tr>
+}
+
+</table>
